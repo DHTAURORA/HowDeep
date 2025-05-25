@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Deep Will You Go?</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="welcome-content">
+            <div class="welcome-animation">
+                <h1>
+                    <span class="title-line">How Deep</span>
+                    <br class="mobile-break">
+                    <span class="title-line">Will You Go?</span>
+                </h1>
+                <p class="subtitle">A journey of self-discovery through meaningful conversations</p>
+                <button id="start-game" class="cta-button">Start Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Game Modal -->
+    <div id="save-game-modal" class="modal">
+        <div class="modal-content">
+            <h3>Game Saved</h3>
+            <p>Your progress has been successfully saved.</p>
+            <div class="modal-buttons">
+                <button id="close-save" class="cta-button">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Session Modal -->
+    <div id="end-session-modal" class="modal">
+        <div class="modal-content">
+            <h3>End Session?</h3>
+            <p>Are you sure you want to end the session? Your progress will be saved.</p>
+            <div class="modal-buttons">
+                <button id="confirm-end" class="cta-button">End Session</button>
+                <button id="cancel-end" class="control-button">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <div class="level-indicator">Level <span id="current-level">1</span></div>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+        </div>
+        
+        <div class="card-container">
+            <div id="game-card" class="card">
+                <div class="card-front"></div>
+                <div class="card-back"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prev-card" class="control-button">Previous</button>
+            <button id="next-card" class="control-button">Next</button>
+            <button id="save-game" class="control-button">Save Game</button>
+            <button id="end-session" class="control-button">End Session</button>
+        </div>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen">
+        <div class="settings-content">
+            <h2>Game Settings</h2>
+            <div class="setting-group">
+                <label>Game Length</label>
+                <input type="range" id="game-length" min="5" max="50" value="20">
+                <span id="game-length-value">20</span> cards
+            </div>
+            <div class="setting-group">
+                <label>Custom Question</label>
+                <input type="text" id="custom-question">
+                <button id="add-question">Add Question</button>
+            </div>
+            <button id="back-to-game" class="cta-button">Back to Game</button>
+        </div>
+    </div>
+
+    <script src="scripts/game.js"></script>
+</body>
+</html>

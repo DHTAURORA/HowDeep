@@ -1,0 +1,467 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --background-gradient: linear-gradient(135deg, #0a192f 0%, #1a2a42 100%);
+    --card-gradient: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
+    --text-color: #2c3e50;
+    --success-color: #2ecc71;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background-gradient);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+@keyframes wipeUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes wipeDown {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.button {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.button:hover::after {
+    transform: scaleX(1);
+}
+
+.control-button {
+    background: var(--primary-color);
+    color: white;
+}
+
+.control-button:hover {
+    background: #357abd;
+}
+
+.cta-button {
+    background: var(--accent-color);
+    color: white;
+}
+
+.cta-button:hover {
+    background: #c0392b;
+}
+
+/* iOS App Opening Animation */
+@keyframes iosAppOpen {
+    0% {
+        transform: scale(0.8) translateY(20px) rotateX(10deg);
+        opacity: 0;
+    }
+    40% {
+        transform: scale(1.02) translateY(-5px) rotateX(-2deg);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1) translateY(0) rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+/* Apply animation to all buttons */
+.control-button, .cta-button {
+    animation: iosAppOpen 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.screen.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Welcome Screen */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.welcome-screen.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.welcome-content {
+    text-align: center;
+    width: 98%;
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 1%;
+}
+
+.welcome-animation {
+    animation: iosAppOpen 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: center center;
+}
+
+.welcome-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+.title-line {
+    display: inline-block;
+}
+
+.mobile-break {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-break {
+        display: block;
+    }
+    
+    .welcome-content {
+        max-width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .welcome-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem
+    }
+    
+    .card-container {
+        width: 90%;
+        height: 60vh;
+    }
+    
+    .card {
+        touch-action: pan-y;
+        user-select: none;
+    }
+    
+    /* More pronounced swipe animations for mobile */
+    .card.slide-out-left {
+        transform: translateX(-150%) rotateY(-45deg);
+    }
+    
+    .card.slide-out-right {
+        transform: translateX(150%) rotateY(45deg);
+    }
+    
+    .card.slide-in-left {
+        transform: translateX(-150%) rotateY(-45deg);
+    }
+    
+    .card.slide-in-right {
+        transform: translateX(150%) rotateY(45deg);
+    }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #e9e5e5;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+/* Game Screen */
+#game-screen {
+    height: 120vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.game-header {
+    padding: 1rem;
+    text-align: center;
+}
+
+.level-indicator {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.card-container {
+    margin: 2rem auto;
+    width: 80%;
+    max-width: 600px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--card-gradient);
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+/* Animation classes */
+.card.slide-out-left {
+    transform: translateX(-100%) rotateY(-30deg);
+    opacity: 0;
+}
+
+.card.slide-out-right {
+    transform: translateX(100%) rotateY(30deg);
+    opacity: 0;
+}
+
+.card.slide-in-left {
+    transform: translateX(-100%) rotateY(-30deg);
+    opacity: 0;
+    animation: slideInLeft 0.5s ease forwards;
+}
+
+.card.slide-in-right {
+    transform: translateX(100%) rotateY(30deg);
+    opacity: 0;
+    animation: slideInRight 0.5s ease forwards;
+}
+
+@keyframes slideInLeft {
+    to {
+        transform: translateX(0) rotateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    to {
+        transform: translateX(0) rotateY(0);
+        opacity: 1;
+    }
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Buttons */
+.cta-button, .control-button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button {
+    background: var(--primary-color);
+    color: white;
+}
+
+.control-button {
+    background: white;
+    color: var(--secondary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Settings Screen */
+.settings-content {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.setting-group {
+    margin-bottom: 2rem;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.setting-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.screen.blur {
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    pointer-events: none;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: iosAppOpen 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-content:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal-content:hover::before {
+    transform: scaleX(1);
+}
+
+.modal-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-content h1 {
+        font-size: 2rem;
+    }
+    
+    .card-container {
+        width: 95%;
+    }
+    
+    .controls {
+        flex-wrap: wrap;
+    }
+}
